@@ -3,14 +3,50 @@
 
 #include <gb/gb.h>
 
-void platform_init();
-void platform_update();
-void basic_anim() BANKED;
-void wall_check() BANKED;
-void ladder_check() BANKED;
-void ladder_switch() BANKED;
-void dash_init_switch() BANKED;
-UBYTE drop_press() BANKED;
+void platform_init(void) BANKED;
+void platform_update(void) BANKED;
+
+void fall_state(void) BANKED;
+void ground_state(void) BANKED;
+void jump_state(void) BANKED;
+void dash_init(void) BANKED;
+void dash_state(void) BANKED;
+void ladder_state(void) BANKED;
+void wall_state(void) BANKED;
+void knockback_state(void) BANKED;
+void blank_state(void) BANKED;
+
+void basic_anim(void) BANKED;
+void wall_check(void) BANKED;
+void ladder_check(void) BANKED;
+
+
+UBYTE drop_press(void) BANKED;
+
+typedef enum {              //Datatype for tracking states
+    FALL_INIT = 0,
+    FALL_STATE = 1,
+    FALL_END = 2,
+    GROUND_INIT = 3,
+    GROUND_STATE = 4,
+    GROUND_END = 5,
+    JUMP_INIT = 6,
+    JUMP_STATE = 7,
+    JUMP_END = 8,
+    DASH_INIT = 9,
+    DASH_STATE = 10,
+    DASH_END = 11,
+    LADDER_INIT = 12,
+    LADDER_STATE = 13,
+    LADDER_END = 14,
+    WALL_INIT = 15,
+    WALL_STATE = 16,
+    WALL_END = 17,
+    KNOCKBACK_INIT = 18,
+    KNOCKBACK_STATE = 19,
+    BLANK_INIT = 20,
+    BLANK_STATE = 21
+}  pStates;
 
 typedef struct script_state_t {
     UBYTE script_bank;
